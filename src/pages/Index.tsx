@@ -1,6 +1,6 @@
 import { Card } from "@/components/ui/card";
 import { AreaChart, Area, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer } from "recharts";
-import { Users, Server, Clock, Memory } from "lucide-react";
+import { Users, Server, Clock } from "lucide-react";
 
 const data = [
   { time: "00:00", players: 25 },
@@ -63,7 +63,7 @@ const Index = () => {
         <Card className="stat-card hover-scale">
           <div className="flex items-center gap-4">
             <div className="p-4 bg-primary/5 rounded-full">
-              <Memory className="w-6 h-6 text-primary" />
+              <Server className="w-6 h-6 text-primary" />
             </div>
             <div>
               <p className="text-sm text-muted-foreground">RAM Usage</p>
