@@ -19,11 +19,13 @@ import {
   FileCode,
   Shield,
   Globe,
-  Boxes
+  Boxes,
+  Lock
 } from "lucide-react"
 
 const menuItems = [
   { title: "Dashboard", icon: Home, url: "/" },
+  { title: "Admin", icon: Lock, url: "/admin" },
   { title: "Servers", icon: Server, url: "/servers" },
   { title: "Players", icon: Users, url: "/players" },
   { title: "Console", icon: Terminal, url: "/console" },
