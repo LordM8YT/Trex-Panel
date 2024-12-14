@@ -20,8 +20,11 @@ import {
   Shield,
   Globe,
   Boxes,
-  Lock
+  Lock,
+  LogOut
 } from "lucide-react"
+import { supabase } from "@/integrations/supabase/client"
+import { useNavigate } from "react-router-dom"
 
 const menuItems = [
   { title: "Dashboard", icon: Home, url: "/" },
@@ -38,6 +41,13 @@ const menuItems = [
 ]
 
 export function AppSidebar() {
+  const navigate = useNavigate();
+
+  const handleLogout = async () => {
+    await supabase.auth.signOut();
+    navigate("/login");
+  };
+
   return (
     <Sidebar>
       <SidebarHeader className="p-4">
@@ -61,6 +71,14 @@ export function AppSidebar() {
                   </SidebarMenuButton>
                 </SidebarMenuItem>
               ))}
+              <SidebarMenuItem>
+                <SidebarMenuButton onClick={handleLogout} tooltip="Logout">
+                  <div className="flex items-center gap-2 text-destructive">
+                    <LogOut className="w-4 h-4" />
+                    <span>Logout</span>
+                  </div>
+                </SidebarMenuButton>
+              </SidebarMenuItem>
             </SidebarMenu>
           </SidebarGroupContent>
         </SidebarGroup>
