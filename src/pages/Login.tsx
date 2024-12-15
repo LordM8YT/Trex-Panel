@@ -4,9 +4,11 @@ import { Auth } from "@supabase/auth-ui-react";
 import { ThemeSupa } from "@supabase/auth-ui-shared";
 import { supabase } from "@/integrations/supabase/client";
 import { Server, Lock } from "lucide-react";
+import { useToast } from "@/components/ui/use-toast";
 
 const Login = () => {
   const navigate = useNavigate();
+  const { toast } = useToast();
 
   useEffect(() => {
     supabase.auth.onAuthStateChange((event, session) => {
@@ -29,6 +31,15 @@ const Login = () => {
             <h1 className="text-2xl font-bold text-zinc-100 mb-2">Welcome Back</h1>
             <p className="text-zinc-400">Sign in to access your dashboard</p>
           </div>
+          
+          <div className="mb-6 p-4 rounded-md bg-zinc-800/30 border border-zinc-700/50">
+            <h3 className="text-sm font-medium text-zinc-300 mb-2">Password Requirements:</h3>
+            <ul className="text-xs text-zinc-400 space-y-1">
+              <li>• Minimum 6 characters long</li>
+              <li>• Can contain letters, numbers, and special characters</li>
+            </ul>
+          </div>
+
           <Auth
             supabaseClient={supabase}
             appearance={{
@@ -69,10 +80,19 @@ const Login = () => {
                 input: 'bg-zinc-800/50 border-zinc-700 text-zinc-100',
                 label: 'text-zinc-400',
                 anchor: 'text-zinc-400 hover:text-zinc-300',
+                message: 'text-red-400 text-sm mt-1',
               },
             }}
             providers={[]}
+            onError={(error) => {
+              toast({
+                variant: "destructive",
+                title: "Error",
+                description: error.message,
+              });
+            }}
           />
+          
           <div className="mt-8 pt-6 border-t border-zinc-800/50">
             <div className="flex items-center justify-center gap-2 text-zinc-500 text-sm">
               <Lock className="w-4 h-4" />
