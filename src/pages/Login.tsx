@@ -15,7 +15,7 @@ const Login = () => {
       if (event === "SIGNED_IN" && session) {
         navigate("/");
       }
-      if (event === "USER_DELETED" || event === "SIGNED_OUT") {
+      if (event === "SIGNED_OUT") {
         navigate("/login");
       }
     });
