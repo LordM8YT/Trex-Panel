@@ -11,7 +11,9 @@ const Login = () => {
   const { toast } = useToast();
 
   useEffect(() => {
-    supabase.auth.onAuthStateChange(async (event, session) => {
+    const {
+      data: { subscription },
+    } = supabase.auth.onAuthStateChange((event, session) => {
       if (event === "SIGNED_IN" && session) {
         navigate("/");
       }
@@ -19,6 +21,8 @@ const Login = () => {
         navigate("/login");
       }
     });
+
+    return () => subscription.unsubscribe();
   }, [navigate]);
 
   return (
@@ -92,8 +96,13 @@ const Login = () => {
                 sign_in: {
                   email_label: 'Email',
                   password_label: 'Password',
-                }
-              }
+                },
+                sign_up: {
+                  email_label: 'Email',
+                  password_label: 'Password',
+                  button_label: 'Create Account',
+                },
+              },
             }}
             theme="dark"
           />
