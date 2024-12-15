@@ -84,13 +84,15 @@ const Login = () => {
               },
             }}
             providers={[]}
-            onError={(error) => {
-              toast({
-                variant: "destructive",
-                title: "Error",
-                description: error.message,
-              });
+            localization={{
+              variables: {
+                sign_in: {
+                  email_label: 'Email',
+                  password_label: 'Password',
+                }
+              }
             }}
+            theme="dark"
           />
           
           <div className="mt-8 pt-6 border-t border-zinc-800/50">
