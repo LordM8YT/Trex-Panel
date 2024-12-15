@@ -15,15 +15,32 @@ const Login = () => {
       data: { subscription },
     } = supabase.auth.onAuthStateChange((event, session) => {
       if (event === "SIGNED_IN" && session) {
+        toast({
+          title: "Success",
+          description: "Successfully signed in!",
+        });
         navigate("/");
       }
       if (event === "SIGNED_OUT") {
         navigate("/login");
       }
+      if (event === "USER_UPDATED") {
+        toast({
+          title: "Profile Updated",
+          description: "Your profile has been updated.",
+        });
+      }
+      // Handle signup errors
+      if (event === "SIGNED_UP") {
+        toast({
+          title: "Account Created",
+          description: "Your account has been created successfully!",
+        });
+      }
     });
 
     return () => subscription.unsubscribe();
-  }, [navigate]);
+  }, [navigate, toast]);
 
   return (
     <div className="min-h-screen bg-gradient-to-b from-zinc-900 to-zinc-950 flex items-center justify-center p-4">
