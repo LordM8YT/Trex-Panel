@@ -1,27 +1,27 @@
 import { Card } from "@/components/ui/card"
 import { Button } from "@/components/ui/button"
 import { Badge } from "@/components/ui/badge"
-import { ServerCog, Play, Square, Power } from "lucide-react"
+import { ServerCog, Play, Square, RotateCw } from "lucide-react"
 
 export function ServerControls() {
   return (
-    <Card className="bg-[#1E2433]/50 border-white/5 text-white">
-      <div className="flex items-center justify-between p-6">
-        <h2 className="text-xl font-semibold flex items-center gap-2">
-          <ServerCog className="w-5 h-5" />
+    <Card className="bg-[#0D0F1D] border-[#1E2433] text-white">
+      <div className="flex items-center justify-between p-6 border-b border-[#1E2433]">
+        <h2 className="text-lg font-medium flex items-center gap-2">
+          <ServerCog className="w-5 h-5 text-blue-500" />
           Server Information
         </h2>
         <div className="flex gap-2">
-          <Button variant="outline" size="sm" className="gap-2 border-white/10 bg-white/5 hover:bg-white/10 text-white">
-            <Play className="w-4 h-4" />
+          <Button size="sm" variant="outline" className="bg-emerald-500/10 hover:bg-emerald-500/20 text-emerald-500 border-emerald-500/20">
+            <Play className="w-4 h-4 mr-2" />
             Start
           </Button>
-          <Button variant="outline" size="sm" className="gap-2 border-white/10 bg-white/5 hover:bg-white/10 text-white">
-            <Square className="w-4 h-4" />
+          <Button size="sm" variant="outline" className="bg-red-500/10 hover:bg-red-500/20 text-red-500 border-red-500/20">
+            <Square className="w-4 h-4 mr-2" />
             Stop
           </Button>
-          <Button variant="outline" size="sm" className="gap-2 border-white/10 bg-white/5 hover:bg-white/10 text-white">
-            <Power className="w-4 h-4" />
+          <Button size="sm" variant="outline" className="bg-blue-500/10 hover:bg-blue-500/20 text-blue-500 border-blue-500/20">
+            <RotateCw className="w-4 h-4 mr-2" />
             Restart
           </Button>
         </div>
@@ -33,14 +33,14 @@ export function ServerControls() {
           { name: "minigames", status: "Running", players: 3, version: "1.20.1" },
           { name: "skyblock", status: "Maintenance", players: 0, version: "1.20.1" }
         ].map((server, i) => (
-          <div key={i} className="p-4 rounded-lg bg-black/20 hover:bg-black/30 transition-colors backdrop-blur-sm">
+          <div key={i} className="p-4 rounded-lg bg-[#0A0B14] hover:bg-[#0D0F1D] transition-colors border border-[#1E2433]">
             <div className="flex justify-between items-center mb-2">
               <span className="font-medium capitalize">{server.name}</span>
               <Badge 
                 variant="outline" 
                 className={server.status === "Running" 
                   ? "bg-emerald-500/10 text-emerald-500 border-0" 
-                  : "bg-destructive/10 text-destructive border-0"
+                  : "bg-red-500/10 text-red-500 border-0"
                 }
               >
                 {server.status}

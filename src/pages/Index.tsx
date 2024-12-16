@@ -9,16 +9,16 @@ import { Switch } from "@/components/ui/switch"
 const Index = () => {
   return (
     <DashboardLayout>
-      <div className="min-h-screen bg-[#1A1F2C] text-white">
+      <div className="min-h-screen bg-[#0A0B14] text-white">
         {/* Header */}
-        <div className="border-b border-white/10 bg-[#1A1F2C]/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
+        <div className="border-b border-white/5 bg-[#0A0B14]/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
           <div className="flex h-14 items-center px-4 gap-4">
             <h1 className="text-lg font-semibold">Trex Panel</h1>
             <div className="ml-auto flex items-center gap-4">
-              <Search className="h-5 w-5 text-white/70" />
-              <Settings className="h-5 w-5 text-white/70" />
-              <Layers className="h-5 w-5 text-white/70" />
-              <Moon className="h-5 w-5 text-white/70" />
+              <Search className="h-5 w-5 text-white/70 hover:text-white transition-colors" />
+              <Settings className="h-5 w-5 text-white/70 hover:text-white transition-colors" />
+              <Layers className="h-5 w-5 text-white/70 hover:text-white transition-colors" />
+              <Moon className="h-5 w-5 text-white/70 hover:text-white transition-colors" />
             </div>
           </div>
         </div>
