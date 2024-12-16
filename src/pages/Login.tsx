@@ -30,8 +30,7 @@ const Login = () => {
           description: "Your profile has been updated.",
         });
       }
-      // Handle signup errors
-      if (event === "SIGNED_UP") {
+      if (event === "INITIAL_SESSION") {
         toast({
           title: "Account Created",
           description: "Your account has been created successfully!",
