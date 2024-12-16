@@ -16,19 +16,13 @@ Build the Docker Image:
 
 Navigate to the project directory:
 
-Bash
-
 cd trex-panel
 Build the Docker image using the provided Dockerfile:
-
-Bash
 
 docker build -t trex-panel . 
 Running the Container
 
 Create and Start the Container:
-
-Bash
 
 docker run -d -p 8080:8080 trex-panel
 This command:
@@ -43,15 +37,11 @@ Stopping the Container
 
 To stop the running container:
 
-Bash
-
 docker stop <container_id> 
 You can find the container ID by running docker ps -a.
 
 Removing the Container
 
 To completely remove the container:
-
-Bash
 
 docker rm <container_id>
