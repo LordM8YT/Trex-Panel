@@ -1,6 +1,6 @@
 import { Card } from "@/components/ui/card"
 import { Badge } from "@/components/ui/badge"
-import { Users, Memory, Cpu, Network } from "lucide-react"
+import { Users, HardDrive, Cpu, Network } from "lucide-react"
 
 export function StatsCards() {
   return (
@@ -20,7 +20,7 @@ export function StatsCards() {
       <Card className="bg-[#0D0F1D] border-[#1E2433] text-white">
         <div className="flex items-center gap-4 p-6">
           <div className="p-3 bg-blue-500/10 rounded-lg">
-            <Memory className="w-6 h-6 text-blue-500" />
+            <HardDrive className="w-6 h-6 text-blue-500" />
           </div>
           <div>
             <p className="text-sm text-white/50">RAM Usage</p>
