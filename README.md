@@ -1,69 +1,57 @@
-# Welcome to your Lovable project
+# Trex Panel Docker Image Installation
 
-## Project info
+This document provides instructions on how to install and run the Trex Panel Docker image.
 
-**URL**: https://lovable.dev/projects/aab54443-1197-4003-9196-245275bb6228
+**Prerequisites**
 
-## How can I edit this code?
+* **Docker:** Ensure Docker and Docker Compose are installed and running on your system. You can find installation instructions for your operating system on the official Docker website: [Docker Documentation](https://docs.docker.com/)
 
-There are several ways of editing your application.
+**Installation**
 
-**Use Lovable**
+1. **Clone the Repository:**
 
-Simply visit the [Lovable Project](https://lovable.dev/projects/aab54443-1197-4003-9196-245275bb6228) and start prompting.
+   ```bash
+   git clone [invalid URL removed]
+Build the Docker Image:
 
-Changes made via Lovable will be committed automatically to this repo.
+Navigate to the project directory:
 
-**Use your preferred IDE**
+Bash
 
-If you want to work locally using your own IDE, you can clone this repo and push changes. Pushed changes will also be reflected in Lovable.
+cd trex-panel
+Build the Docker image using the provided Dockerfile:
 
-The only requirement is having Node.js & npm installed - [install with nvm](https://github.com/nvm-sh/nvm#installing-and-updating)
+Bash
 
-Follow these steps:
+docker build -t trex-panel . 
+Running the Container
 
-```sh
-# Step 1: Clone the repository using the project's Git URL.
-git clone <YOUR_GIT_URL>
+Create and Start the Container:
 
-# Step 2: Navigate to the project directory.
-cd <YOUR_PROJECT_NAME>
+Bash
 
-# Step 3: Install the necessary dependencies.
-npm i
+docker run -d -p 8080:8080 trex-panel
+This command:
 
-# Step 4: Start the development server with auto-reloading and an instant preview.
-npm run dev
-```
+-d: Runs the container in detached mode (in the background).
+-p 8080:8080: Maps port 8080 on the host machine to port 8080 within the container.
+Access the Trex Panel:
 
-**Edit a file directly in GitHub**
+Open your web browser and navigate to http://localhost:8080 to access the Trex Panel interface.
 
-- Navigate to the desired file(s).
-- Click the "Edit" button (pencil icon) at the top right of the file view.
-- Make your changes and commit the changes.
+Stopping the Container
 
-**Use GitHub Codespaces**
+To stop the running container:
 
-- Navigate to the main page of your repository.
-- Click on the "Code" button (green button) near the top right.
-- Select the "Codespaces" tab.
-- Click on "New codespace" to launch a new Codespace environment.
-- Edit files directly within the Codespace and commit and push your changes once you're done.
+Bash
 
-## What technologies are used for this project?
+docker stop <container_id> 
+You can find the container ID by running docker ps -a.
 
-This project is built with .
+Removing the Container
 
-- Vite
-- TypeScript
-- React
-- shadcn-ui
-- Tailwind CSS
+To completely remove the container:
 
-## How can I deploy this project?
+Bash
 
-Simply open [Lovable](https://lovable.dev/projects/aab54443-1197-4003-9196-245275bb6228) and click on Share -> Publish.
-
-## I want to use a custom domain - is that possible?
-
-We don't support custom domains (yet). If you want to deploy your project under your own domain then we recommend using Netlify. Visit our docs for more details: [Custom domains](https://docs.lovable.dev/tips-tricks/custom-domain/)
+docker rm <container_id>
