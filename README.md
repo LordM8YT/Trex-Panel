@@ -11,7 +11,7 @@ This document provides instructions on how to install and run the Trex Panel Doc
 1. **Clone the Repository:**
 
    ```bash
-   git clone [invalid URL removed]
+   git clone [gh repo clone LordM8YT/trex-panel]
 Build the Docker Image:
 
 Navigate to the project directory:
