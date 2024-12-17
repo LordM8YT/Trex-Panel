@@ -36,6 +36,45 @@ export type Database = {
         }
         Relationships: []
       }
+      servers: {
+        Row: {
+          cpu_usage: number
+          created_at: string
+          id: string
+          name: string
+          network_usage: number
+          players: number
+          ram_usage: number
+          status: string
+          updated_at: string
+          user_id: string
+        }
+        Insert: {
+          cpu_usage?: number
+          created_at?: string
+          id?: string
+          name: string
+          network_usage?: number
+          players?: number
+          ram_usage?: number
+          status?: string
+          updated_at?: string
+          user_id: string
+        }
+        Update: {
+          cpu_usage?: number
+          created_at?: string
+          id?: string
+          name?: string
+          network_usage?: number
+          players?: number
+          ram_usage?: number
+          status?: string
+          updated_at?: string
+          user_id?: string
+        }
+        Relationships: []
+      }
     }
     Views: {
       [_ in never]: never

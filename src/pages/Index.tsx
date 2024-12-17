@@ -5,8 +5,32 @@ import { PlayerChart } from "@/components/dashboard/PlayerChart"
 import { ConsoleView } from "@/components/dashboard/ConsoleView"
 import { ServerControls } from "@/components/dashboard/ServerControls"
 import { Switch } from "@/components/ui/switch"
+import { useQuery } from "@tanstack/react-query"
+import { supabase } from "@/integrations/supabase/client"
+import { Skeleton } from "@/components/ui/skeleton"
+import { toast } from "@/components/ui/use-toast"
 
 const Index = () => {
+  const { data: servers, isLoading, error } = useQuery({
+    queryKey: ['servers'],
+    queryFn: async () => {
+      const { data, error } = await supabase
+        .from('servers')
+        .select('*')
+      
+      if (error) {
+        toast({
+          title: "Error",
+          description: "Failed to fetch servers",
+          variant: "destructive",
+        })
+        throw error
+      }
+      
+      return data
+    },
+  })
+
   return (
     <DashboardLayout>
       <div className="min-h-screen bg-[#0A0B14] text-white">
@@ -31,10 +55,39 @@ const Index = () => {
             <Switch />
           </div>
 
-          {/* Server Status Message */}
-          <div className="text-center text-white/50 py-12">
-            <p>There are no other servers to display.</p>
-          </div>
+          {/* Server List */}
+          {isLoading ? (
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+              {[1, 2, 3].map((i) => (
+                <Skeleton key={i} className="h-32 bg-white/5" />
+              ))}
+            </div>
+          ) : error ? (
+            <div className="text-center text-white/50 py-12">
+              <p>Failed to load servers. Please try again.</p>
+            </div>
+          ) : servers?.length === 0 ? (
+            <div className="text-center text-white/50 py-12">
+              <p>You don't have any servers yet.</p>
+            </div>
+          ) : (
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+              {servers?.map((server) => (
+                <div
+                  key={server.id}
+                  className="p-6 rounded-lg bg-white/5 border border-white/10 hover:bg-white/10 transition-colors"
+                >
+                  <h3 className="text-lg font-medium mb-2">{server.name}</h3>
+                  <div className="space-y-2 text-sm text-white/70">
+                    <p>Status: {server.status}</p>
+                    <p>Players: {server.players}</p>
+                    <p>RAM Usage: {server.ram_usage}%</p>
+                    <p>CPU Usage: {server.cpu_usage}%</p>
+                  </div>
+                </div>
+              ))}
+            </div>
+          )}
 
           <StatsCards />
 
